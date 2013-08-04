@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -53,6 +54,7 @@ namespace Grain.Serialization
             {
                 //dynamic _obj = item.ToExpando();
                 //return DynamicToXML(_obj).ToString();
+                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return ToXml(((IDictionary<string, object>)item), typeof(IDictionary<string, object>));
             }
 
@@ -132,6 +134,7 @@ namespace Grain.Serialization
             {
                 //dynamic _obj = item.ToExpando();
                 //return DynamicToXML(_obj, rootName).ToString();
+                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return ToXml(((IDictionary<string, object>)item), typeof(IDictionary<string, object>));
             }
 
@@ -171,9 +174,14 @@ namespace Grain.Serialization
         public static T FromXml<T>(this string xml)
         {
             Type _type = typeof(T);
-            if (_type == typeof(ExpandoObject) || _type == typeof(Object))
+            if (_type == typeof(ExpandoObject))
             {
-                throw new ArgumentException("ExpandoObjects and Objects are serialized as typeof(IDictionary<string, object>), so the output type must be IDictionary<string, object>. You can use the ToExpando() method to then cast the result to ExpandoObject, if you wish.", "T");
+                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                return (T)(object)xml.FromXml<IDictionary<string, object>>().ToExpando();
+            }
+            else if (_type == typeof(Object))
+            {
+                throw new ArgumentException("Objects are serialized as typeof(IDictionary<string, object>), so the output type must be IDictionary<string, object>. You can use the ToExpando() method to then cast the result to ExpandoObject, if you wish.", "T");
             }
 
             using (StringReader stringReader = new StringReader(xml))
@@ -194,9 +202,14 @@ namespace Grain.Serialization
         /// <returns></returns>
         public static object FromXml(this string xml, Type type)
         {
-            if (type == typeof(ExpandoObject) || type == typeof(Object))
+            if (type == typeof(ExpandoObject))
             {
-                throw new ArgumentException("ExpandoObjects and Objects are serialized as typeof(IDictionary<string, object>), so the output type must be IDictionary<string, object>. You can use the ToExpando() method to then cast the result to ExpandoObject, if you wish.", "T");
+                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                return (object)xml.FromXml<IDictionary<string, object>>().ToExpando();
+            }
+            else if (type == typeof(Object))
+            {
+                throw new ArgumentException("Objects are serialized as typeof(IDictionary<string, object>), so the output type must be IDictionary<string, object>. You can use the ToExpando() method to then cast the result to ExpandoObject, if you wish.", "T");
             }
 
             using (StringReader stringReader = new StringReader(xml))
@@ -226,9 +239,14 @@ namespace Grain.Serialization
                 return xml.FromXml<T>();
 
             Type _type = typeof(T);
-            if (_type == typeof(ExpandoObject) || _type == typeof(Object))
+            if (_type == typeof(ExpandoObject))
             {
-                throw new ArgumentException("ExpandoObjects and Objects are serialized as typeof(IDictionary<string, object>), so the output type must be IDictionary<string, object>. You can use the ToExpando() method to then cast the result to ExpandoObject, if you wish.", "T");
+                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                return (T)(object)xml.FromXml<IDictionary<string, object>>().ToExpando();
+            }
+            else if (_type == typeof(Object))
+            {
+                throw new ArgumentException("Objects are serialized as typeof(IDictionary<string, object>), so the output type must be IDictionary<string, object>. You can use the ToExpando() method to then cast the result to ExpandoObject, if you wish.", "T");
             }
 
             XmlSerializer _serializer = new XmlSerializer(_type);

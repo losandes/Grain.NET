@@ -97,14 +97,14 @@ namespace Grain.Tests.Models
         public void ExpandoXmlGenericObjectTest()
         {
             string _expected = "HelloWorld";
-            dynamic _extendo = new ExpandoXmlObject(typeof(Dictionary<string, object>));
+            dynamic _extendo = new ExpandoXmlObject(typeof(ExpandoObject));
             _extendo.Name = _expected;
             string _actual = _extendo.Name;
             Assert.AreEqual(_actual, _expected);
 
             // Get the xml back from the object, and make sure it contains the changed value
             string _xmlResult = _extendo._XmlValue;
-            dynamic _result = _xmlResult.FromXml<Dictionary<string, object>>().ToExpando();
+            dynamic _result = _xmlResult.FromXml<ExpandoObject>().ToExpando();
             Assert.AreEqual(_result.Name, _expected);
         }
 
@@ -143,7 +143,7 @@ namespace Grain.Tests.Models
             Assert.AreEqual(_actual, _expected);
 
             string _xmlResult = _extendo._XmlValue;
-            dynamic _result = _xmlResult.FromXml<Dictionary<string, object>>().ToExpando();
+            dynamic _result = _xmlResult.FromXml<ExpandoObject>().ToExpando();
             Assert.AreEqual(_result.Name, _expected);
             Assert.AreEqual(_result.NestedUrl.Name, _expected);
             Assert.AreEqual(_result.Nest.Name, _expected);

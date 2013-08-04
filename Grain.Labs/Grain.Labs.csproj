@@ -45,7 +45,6 @@
     <Compile Include="Dynamic\ExpandoXElement.cs" />
     <Compile Include="Dynamic\ExpandoXmlObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\DynamicSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Grain\Grain.csproj">
@@ -53,6 +52,7 @@
       <Name>Grain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

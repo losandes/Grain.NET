@@ -73,6 +73,7 @@
     <Compile Include="Serialization\BinarySerializer.cs" />
     <Compile Include="Serialization\Conversions.cs" />
     <Compile Include="Serialization\DictionarySerializer.cs" />
+    <Compile Include="Serialization\DynamicSerializer.cs" />
     <Compile Include="Serialization\JsonSerializer.cs" />
     <Compile Include="Serialization\SerializationTypes.cs" />
     <Compile Include="Serialization\XMLSerializer.cs" />

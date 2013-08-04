@@ -11,6 +11,10 @@ using Grain.Extensions;
 
 namespace Grain.Serialization
 {
+    /// <summary>
+    /// The DynamicSerializer class is still a Lab, even though it is moved into the main Grain library.
+    /// Use with caution.
+    /// </summary>
     public static class DynamicSerializer
     {
         /// <summary>

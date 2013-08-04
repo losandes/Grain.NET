@@ -135,7 +135,8 @@ namespace Grain.Tests.Serialization
             string _actualXml = Grain.Serialization.XMLSerializer.ToXml(_expected); //Grain.Serialization.XMLSerializer.ToXml(_expected);
             Assert.AreEqual(_expectedXml, _actualXml);
 
-            dynamic _actual = _actualXml.FromXml<IDictionary<string, object>>().ToExpando();
+            //dynamic _actual = _actualXml.FromXml<IDictionary<string, object>>().ToExpando();
+            dynamic _actual = _actualXml.FromXml<ExpandoObject>().ToExpando();
             object _actualAsObject = (object)_actual;
             Assert.IsNotNull(_actualAsObject);
             Assert.AreEqual(_expected.Foo, _actual.Foo);
