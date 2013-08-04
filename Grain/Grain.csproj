@@ -81,9 +81,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="license.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Email\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
