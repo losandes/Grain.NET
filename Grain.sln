@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain", "Grain\Grain.csproj", "{0A0A90F2-D352-4CDF-9AD2-09C409B41C14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Tests", "Grain.Tests\Grain.Tests.csproj", "{259DF062-A5EF-4120-9737-913BCE0F5D7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B50D4FFB-D824-4D8A-8BD7-9D25FCDF2D21}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Encryption", "..\Grain.Encryption\Grain.Encryption.csproj", "{39E07778-A98B-4925-8FAC-2E71981DD632}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Encryption.Tests", "..\Grain.Encryption\Grain.Encryption.Tests\Grain.Encryption.Tests.csproj", "{144431D1-71BC-472C-90F5-0E891B830058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Labs", "Grain.Labs\Grain.Labs.csproj", "{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A0A90F2-D352-4CDF-9AD2-09C409B41C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A0A90F2-D352-4CDF-9AD2-09C409B41C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A0A90F2-D352-4CDF-9AD2-09C409B41C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A0A90F2-D352-4CDF-9AD2-09C409B41C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E07778-A98B-4925-8FAC-2E71981DD632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E07778-A98B-4925-8FAC-2E71981DD632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E07778-A98B-4925-8FAC-2E71981DD632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E07778-A98B-4925-8FAC-2E71981DD632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144431D1-71BC-472C-90F5-0E891B830058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144431D1-71BC-472C-90F5-0E891B830058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144431D1-71BC-472C-90F5-0E891B830058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144431D1-71BC-472C-90F5-0E891B830058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
