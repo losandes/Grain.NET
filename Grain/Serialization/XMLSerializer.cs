@@ -54,7 +54,7 @@ namespace Grain.Serialization
             {
                 //dynamic _obj = item.ToExpando();
                 //return DynamicToXML(_obj).ToString();
-                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                Debug.WriteLine("Warning (Grain.Serialization): ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return ToXml(((IDictionary<string, object>)item), typeof(IDictionary<string, object>));
             }
 
@@ -134,7 +134,7 @@ namespace Grain.Serialization
             {
                 //dynamic _obj = item.ToExpando();
                 //return DynamicToXML(_obj, rootName).ToString();
-                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                Debug.WriteLine("Warning (Grain.Serialization): ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return ToXml(((IDictionary<string, object>)item), typeof(IDictionary<string, object>));
             }
 
@@ -176,7 +176,7 @@ namespace Grain.Serialization
             Type _type = typeof(T);
             if (_type == typeof(ExpandoObject))
             {
-                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                Debug.WriteLine("Warning (Grain.Serialization): ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return (T)(object)xml.FromXml<IDictionary<string, object>>().ToExpando();
             }
             else if (_type == typeof(Object))
@@ -204,7 +204,7 @@ namespace Grain.Serialization
         {
             if (type == typeof(ExpandoObject))
             {
-                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                Debug.WriteLine("Warning (Grain.Serialization): ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return (object)xml.FromXml<IDictionary<string, object>>().ToExpando();
             }
             else if (type == typeof(Object))
@@ -241,7 +241,7 @@ namespace Grain.Serialization
             Type _type = typeof(T);
             if (_type == typeof(ExpandoObject))
             {
-                Debug.WriteLine("Warning: ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
+                Debug.WriteLine("Warning (Grain.Serialization): ExpandoObject and Object XML serialization is experimental. JSON serialization is recommended, if you are serializing these types.");
                 return (T)(object)xml.FromXml<IDictionary<string, object>>().ToExpando();
             }
             else if (_type == typeof(Object))
