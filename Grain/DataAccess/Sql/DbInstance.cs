@@ -94,7 +94,7 @@ namespace Grain.DataAccess.Sql
                 command.Connection = SqlConnection;
                 command.CommandTimeout = _defaultCommandTimeout;
 
-                using (SqlDataReader reader = command.ExecuteReader()) //CommandBehavior.CloseConnection))
+                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     while (reader.Read())
                         yield return modelBinder(reader);
@@ -242,7 +242,7 @@ namespace Grain.DataAccess.Sql
                 command.Connection = SqlConnection;
                 command.CommandTimeout = _defaultCommandTimeout;
 
-                using (SqlDataReader reader = command.ExecuteReader()) //CommandBehavior.CloseConnection))
+                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     reader.ReadRecordsTo<T1, T2, T3, T4, T5, T6>(
                         factory1: modelBinder1, out1: output1,
