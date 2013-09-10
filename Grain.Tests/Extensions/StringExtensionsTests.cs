@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Grain.Extensions;
+using System.Collections.Generic;
 
 namespace Grain.Tests.Extensions
 {
@@ -17,6 +18,25 @@ namespace Grain.Tests.Extensions
 
             _expected = "Hello_World";
             _actual = "Hello_World!".RemoveSpecialCharacters(true);
+            Assert.AreEqual(_expected, _actual);
+        }
+
+        [TestMethod]
+        [TestCategory("Grain.Extensions")]
+        public void ReplaceCharactersTest()
+        {
+            string _expected = "Hello World";
+            string _actual = "Hello World!@$%^&*".RemoveCharacters(new List<string> { "!", "@", "$", "%", "^", "&", "*" });
+            Assert.AreEqual(_expected, _actual);
+
+            _actual = "Hello World!@$%^&*".RemoveCharacters(new Char[] { '!', '@', '$', '%', '^', '&', '*' });
+            Assert.AreEqual(_expected, _actual);
+
+            _expected = "Hello World_______";
+            _actual = "Hello World!@$%^&*".ReplaceCharacters("_", new Char[] { '!', '@', '$', '%', '^', '&', '*' });
+            Assert.AreEqual(_expected, _actual);
+
+            _actual = "Hello World!@$%^&*".ReplaceCharacters("_", new List<string> { "!", "@", "$", "%", "^", "&", "*" });
             Assert.AreEqual(_expected, _actual);
         }
 

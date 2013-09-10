@@ -85,7 +85,7 @@ namespace Grain.Extensions
 		}
 
 		/// <summary>
-		/// Removes all punctuation and special characters in a string
+        /// Removes all punctuation and special characters in a string  (English Only)
 		/// </summary>
 		/// <param name="input">string: the string to process</param>
 		/// <returns>string: the formatted string</returns>
@@ -95,7 +95,7 @@ namespace Grain.Extensions
 		}
 
 		/// <summary>
-		/// Removes a subset of punctuation and special characters in a string.  If preserveUnderscores is true, then underscores are retained.
+        /// Removes a subset of punctuation and special characters in a string.  If preserveUnderscores is true, then underscores are retained.  (English Only)
 		/// </summary>
 		/// <param name="input">string: the string to process</param>
 		/// <param name="preserveUnderscores">bool: underscores are retained when this is true, otherwise they are removed</param>
@@ -112,25 +112,71 @@ namespace Grain.Extensions
 		}
 
 		/// <summary>
-		/// Replaces a subset of punctuation in a string with the character that is passed as a parameter
+		/// Replaces a subset of punctuation in a string with the character that is passed as a parameter (English Only)
 		/// </summary>
 		/// <param name="input">string: the string to process</param>
-		/// /// <param name="characterToReplaceWith">string: the character to replace spaces with</param>
+		/// <param name="characterToReplaceWith">string: the character to replace spaces with</param>
 		/// <returns>string: the formatted string</returns>
 		public static string ReplaceSpecialCharacters(this string input, string characterToReplaceWith)
 		{
-			if (input == null)
-				return input;
-
-			characterToReplaceWith = characterToReplaceWith != null ? characterToReplaceWith : "";
-
-			foreach (string character in Characters)
-			{
-				input = input.Replace(character, characterToReplaceWith);
-			}
-
-			return input;
+            return input.ReplaceCharacters(characterToReplaceWith, Characters);
 		}
+
+        /// <summary>
+        /// Removes a subset of punctuation in a string (English Only)
+        /// </summary>
+        /// <param name="input">string: the string to process</param>
+        /// <param name="characters">Character Array: the characters to remove</param>
+        /// <returns>string: the formatted string</returns>
+        public static string RemoveCharacters(this string input, Char[] characters)
+        {
+            return input.ReplaceCharacters("", characters);
+        }
+
+        /// <summary>
+        /// Replaces a subset of punctuation in a string with the character that is passed as a parameter (English Only)
+        /// </summary>
+        /// <param name="input">string: the string to process</param>
+        /// <param name="characterToReplaceWith">string: the character to replace spaces with</param>
+        /// <param name="characters">Character Array: the characters to remove</param>
+        /// <returns>string: the formatted string</returns>
+        public static string ReplaceCharacters(this string input, string characterToReplaceWith, Char[] characters)
+        {
+            return input.ReplaceCharacters(characterToReplaceWith, characters.Select( c => c.ToString()).ToList());
+        }
+
+        /// <summary>
+        /// Removes a subset of punctuation in a string (English Only)
+        /// </summary>
+        /// <param name="input">string: the string to process</param>
+        /// <param name="characters">List of type string: the characters to remove</param>
+        /// <returns>string: the formatted string</returns>
+        public static string RemoveCharacters(this string input, List<string> characters)
+        {
+            return input.ReplaceCharacters("", characters);
+        }
+
+        /// <summary>
+        /// Replaces a subset of punctuation in a string with the character that is passed as a parameter (English Only)
+        /// </summary>
+        /// <param name="input">string: the string to process</param>
+        /// <param name="characterToReplaceWith">string: the character to replace spaces with</param>
+        /// <param name="characters">List of type string: the characters to remove</param>
+        /// <returns>string: the formatted string</returns>
+        public static string ReplaceCharacters(this string input, string characterToReplaceWith, List<string> characters)
+        {
+            if (input == null)
+                return input;
+
+            characterToReplaceWith = characterToReplaceWith != null ? characterToReplaceWith : "";
+
+            foreach (string character in characters)
+            {
+                input = input.Replace(character, characterToReplaceWith);
+            }
+
+            return input;
+        }
 
 		/// <summary>
 		/// Removes the content between the startAndEndChar character
