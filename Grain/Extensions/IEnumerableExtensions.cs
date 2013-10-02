@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Grain.Extensions
 {
@@ -306,7 +306,7 @@ namespace Grain.Extensions
         /// <param name="key"></param>
         /// <param name="newValue"></param>
         /// <returns></returns>
-        public static FormCollection Replace(this FormCollection input, string key, string newValue)
+        public static NameValueCollection Replace(this NameValueCollection input, string key, string newValue)
         {
             input.Remove(key);
             input.Add(key, newValue);
