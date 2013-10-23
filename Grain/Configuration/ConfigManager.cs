@@ -6,6 +6,8 @@ namespace Grain.Configuration
 {
     public partial class ConfigManager
     {
+        #region ConnectionStrings
+
         /// <summary>
         /// Gets the connection string value from the configuration file
         /// </summary>
@@ -49,6 +51,10 @@ namespace Grain.Configuration
                 return defaultValue;
             }
         }
+
+        #endregion ConnectionStrings
+
+        #region AppSettings
 
         /// <summary>
         /// Tries to get a value from the config file (App.config, Web.config).  If no key is found, an exception is thrown.
@@ -256,5 +262,42 @@ namespace Grain.Configuration
                 return defaultValue;
             }
         }
+
+        #endregion AppSettings
+
+        #region Sections
+
+        /// <summary>
+        /// Gets the section value from the configuration file
+        /// </summary>
+        /// <param name="fullyQualifiedName">string: the name of the section (i.e. @"system.web/compilation")</param>
+        /// <returns>string: a database connection string</returns>
+        public static T GetSection<T>(string fullyQualifiedName)
+        {
+            if (fullyQualifiedName == null)
+                throw new NullReferenceException("A fully qualified name (i.e. @\"system.web/compilation\") must be provided to get sections from the configuration file");
+
+            return (T)System.Configuration.ConfigurationManager.GetSection(fullyQualifiedName);
+        }
+
+        /// <summary>
+        /// Gets the section value from the configuration file
+        /// </summary>
+        /// <param name="fullyQualifiedName">string: the name of the section (i.e. @"system.web/compilation")</param>
+        /// <returns>string: a database connection string</returns>
+        public static T TryGetSection<T>(string fullyQualifiedName, T defaultValue)
+        {
+            try
+            {
+                var _result = GetSection<T>(fullyQualifiedName);
+                return _result != null ? _result : defaultValue;
+            }
+            catch 
+            {
+                return defaultValue;
+            }
+        }
+
+        #endregion Sections
     }
 }

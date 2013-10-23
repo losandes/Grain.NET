@@ -21,7 +21,7 @@ namespace Grain.Extensions
             if (word.IsEmptyOrWhiteSpace())
                 throw new NullReferenceException("Null cannot be pluralized.");
 
-            var _repository = PluralizationRepository.Instance();
+            var _repository = PluralizationRepository.Instance;
 
             if (_repository.PluralizationWords.Contains(word)) 
             {
@@ -48,7 +48,7 @@ namespace Grain.Extensions
             if (word.IsEmptyOrWhiteSpace())
                 throw new NullReferenceException("Null cannot be singularized.");
 
-            var _repository = PluralizationRepository.Instance();
+            var _repository = PluralizationRepository.Instance;
 
             if (_repository.PluralizationWords.Contains(word))
             {

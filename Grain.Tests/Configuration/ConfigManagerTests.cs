@@ -1,5 +1,6 @@
 ﻿using System;
 using Grain.Configuration;
+using Grain.Extensions;
 using Grain.Serialization;
 using Grain.Tests.Models.TestModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,6 +10,21 @@ namespace Grain.Tests.Configuration
     [TestClass]
     public class ConfigManagerTests
     {
+        [TestMethod]
+        [TestCategory("Grain.Configuration")]
+        public void GetConnectionStringTests()
+        {
+            var _expected = "Data Source=.;Initial Catalog=UnitTests;Integrated Security=True;";
+            var _actual = ConfigManager.GetConnectionString("UnitTests");
+            Assert.AreEqual(_expected, _actual);
+
+            _actual = ConfigManager.TryGetConnectionString("UnitTests");
+            Assert.AreEqual(_expected, _actual);
+
+            _actual = ConfigManager.TryGetConnectionString("NOTUnitTests", "FooBar");
+            Assert.AreEqual("FooBar", _actual);
+        }
+
         [TestMethod]
         [TestCategory("Grain.Configuration")]
         public void TryGetValueTest()
@@ -148,6 +164,22 @@ namespace Grain.Tests.Configuration
             Assert.AreEqual(11, _actual.Hour);
             Assert.AreEqual(42, _actual.Minute);
             Assert.AreEqual(36, _actual.Second);
+        }
+
+        [TestMethod]
+        [TestCategory("Grain.Configuration")]
+        public void GetSectionTest()
+        {
+            string _expected = "helloWorld";
+            var _section = ConfigManager.GetSection<TestSection>("testSection");
+            Assert.AreEqual(_expected, _section.TestValue);
+
+            _section = ConfigManager.TryGetSection<TestSection>("testSection", new TestSection { TestValue = _expected });
+            Assert.AreEqual(_expected, _section.TestValue);
+
+            _expected = "foobar";
+            _section = ConfigManager.TryGetSection<TestSection>("NOTtestSection", new TestSection { TestValue = _expected });
+            Assert.AreEqual(_expected, _section.TestValue);
         }
     }
 }

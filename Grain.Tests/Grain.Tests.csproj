@@ -48,6 +48,7 @@
       <HintPath>Dependencies\Omu.ValueInjecter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
@@ -67,6 +68,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Configuration\ConfigManagerTests.cs" />
+    <Compile Include="Configuration\TestSection.cs" />
     <Compile Include="DataAccess\Sql\DbInstanceTests.cs" />
     <Compile Include="Extensions\EnumExtensionsTests.cs" />
     <Compile Include="Extensions\PluralizationTests.cs" />
