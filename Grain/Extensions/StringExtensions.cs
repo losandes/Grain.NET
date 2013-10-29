@@ -63,7 +63,7 @@ namespace Grain.Extensions
 				return input;
 
 			characterToReplaceWith = characterToReplaceWith != null ? characterToReplaceWith : "";
-			// consider: input.Where(c => !char.IsWhiteSpace(c)) when removing instead of replacing
+
 			input = input.RemoveExtraSpaces();
 			input = input.Replace(" ", characterToReplaceWith);        // replace single spaces with the character that was specified
 
