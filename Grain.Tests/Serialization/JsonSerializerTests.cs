@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Grain.Tests.Models.TestModels;
 using System.Dynamic;
+using System.Collections;
 
 namespace Grain.Tests.Serialization
 {
@@ -131,6 +132,34 @@ namespace Grain.Tests.Serialization
             Assert.AreEqual(_expected.Foo, _actual.Foo);
             Assert.AreEqual(_expected.Number, _actual.Number);
             Assert.AreEqual(_expected.Date, _actual.Date);
+        }
+
+        [TestMethod]
+        [TestCategory("Grain.Serialization")]
+        public void DictionaryJsonSerializationTest()
+        {
+            var json = "{ 'Name': 'Andy', 'Likes': ['Ice Cream','Baseball','Puppies'], 'Hobbies': { 'Archery': true, 'H4x0r1ng': 1, 'LastUpdated': '2013-11-01T00:00:00' } }";
+            var result = json.ToDictionaryFromJson();
+
+            Assert.IsTrue(result.Keys.Contains("Name"));
+            Assert.AreEqual("Andy", result["Name"]);
+
+            Assert.IsTrue(result.Keys.Contains("Likes"));
+            Assert.IsTrue(result["Likes"] is IList<object>);
+            var item = result["Likes"] as IList<object>;
+            Assert.IsTrue(item.Contains("Ice Cream"));
+            Assert.IsTrue(item.Contains("Baseball"));
+            Assert.IsTrue(item.Contains("Puppies"));
+
+            Assert.IsTrue(result.Keys.Contains("Hobbies"));
+            Assert.IsTrue(result["Hobbies"] is Dictionary<string, object>);
+            var hobbies = result["Hobbies"] as Dictionary<string, object>;
+            Assert.IsTrue(hobbies.Keys.Contains("Archery"));
+            Assert.AreEqual(true, hobbies["Archery"]);
+            Assert.IsTrue(hobbies.Keys.Contains("H4x0r1ng"));
+            Assert.AreEqual((Int64)1, hobbies["H4x0r1ng"]);
+            Assert.IsTrue(hobbies.Keys.Contains("LastUpdated"));
+            Assert.AreEqual(new DateTime(2013, 11, 1), hobbies["LastUpdated"]);
         }
     }
 }

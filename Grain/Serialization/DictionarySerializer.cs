@@ -67,10 +67,10 @@ namespace Grain.Serialization
             if (value is JProperty)
                 value = ((JProperty)value).Value;
 
-            if (value is JContainer)
-                return ((JContainer)value).ToDictionary();
-            else if (value is JArray)
+            if (value is JArray)
                 return ((JArray)value).ToObjectList();
+            else if (value is JContainer)
+                return ((JContainer)value).ToDictionary();
             else if (value is JValue)
                 return ((JValue)value).Value;
             else
