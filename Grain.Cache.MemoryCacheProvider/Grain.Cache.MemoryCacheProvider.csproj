@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36DB415E-1AA7-4853-99C2-89FD43641655}</ProjectGuid>
+    <ProjectGuid>{F44F3C6A-FBA5-4D1A-B4E8-DB354DFC5D8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grain.Cache</RootNamespace>
-    <AssemblyName>Grain.Cache</AssemblyName>
+    <RootNamespace>Grain.Cache.MemoryCacheProvider</RootNamespace>
+    <AssemblyName>Grain.Cache.MemoryCacheProvider</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,10 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheSettings.cs" />
-    <Compile Include="ConfigSection.cs" />
-    <Compile Include="ICacheProvider.cs" />
-    <Compile Include="ICacheSettings.cs" />
+    <Compile Include="TODO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
