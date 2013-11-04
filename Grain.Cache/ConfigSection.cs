@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Grain.Cache
 {
-/// <summary>
+    /// <summary>
     /// A class for the DataManager configuration settings section.
     /// </summary>
     public partial class GrainCacheProfiles : ConfigurationSection

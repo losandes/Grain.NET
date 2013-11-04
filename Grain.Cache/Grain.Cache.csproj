@@ -37,11 +37,18 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheSettings.cs" />
+    <Compile Include="CacheProfile.cs" />
+    <Compile Include="CacheProfileManager.cs" />
     <Compile Include="ConfigSection.cs" />
     <Compile Include="ICacheProvider.cs" />
-    <Compile Include="ICacheSettings.cs" />
+    <Compile Include="ICacheProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Grain\Grain.csproj">
+      <Project>{0a0a90f2-d352-4cdf-9ad2-09c409b41c14}</Project>
+      <Name>Grain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
