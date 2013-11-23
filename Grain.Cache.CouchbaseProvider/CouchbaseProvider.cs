@@ -74,28 +74,10 @@ namespace Grain.Cache.CouchbaseProvider
             return _client.Get(GetKeyByGroup(key, group));
         }
 
-        public virtual T Get<T>(string key, string group) where T : class
-        {
-            if (String.IsNullOrWhiteSpace(key))
-                return default(T);
-
-            if (String.IsNullOrWhiteSpace(group))
-                return Get<T>(key);
-
-            return _client.GetJson<T>(GetKeyByGroup(key, group));
-        }
-
         public virtual T Get<T>(string key, string group = "", TimeSpan? expiresIn = null) where T : class
         {
-            if (String.IsNullOrWhiteSpace(key))
-                return default(T);
-
-            if (expiresIn.HasValue) { 
-                var _result = this.Get(key, group, expiresIn);
-                return _result != null ? _result.ToString().FromJson<T>() : default(T);
-            }
-
-            return _client.GetJson<T>(GetKeyByGroup(key, group));
+            var _result = this.Get(key, group, expiresIn);
+            return _result != null ? _result.ToString().FromJson<T>() : default(T);
         }
 
         public virtual bool Remove(string key)
