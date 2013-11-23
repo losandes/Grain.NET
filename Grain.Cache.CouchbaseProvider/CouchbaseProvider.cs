@@ -58,17 +58,6 @@ namespace Grain.Cache.CouchbaseProvider
             return _client.StoreJson(StoreMode.Set, GetKeyByGroup(key, group), data);
         }
 
-        public virtual object Get(string key, string group)
-        {
-            if (String.IsNullOrWhiteSpace(key))
-                return null;
-
-            if (String.IsNullOrWhiteSpace(group))
-                return Get(key);
-
-            return _client.Get(GetKeyByGroup(key, group));
-        }
-
         public virtual object Get(string key, string group = "", TimeSpan? expiresIn = null) 
         {
             if (String.IsNullOrWhiteSpace(key))
