@@ -27,6 +27,12 @@ namespace Grain.Cache.CouchbaseProvider
             return group + key;
         }
 
+        public virtual IEnumerable<string> GetKeysByGroup(IEnumerable<string> keys, string group)
+        {
+            foreach (var k in keys)
+                yield return GetKeyByGroup(k, group);
+        }
+
         public virtual bool Set<T>(string key, T data, ICacheProfile settings)
         {
             if (String.IsNullOrWhiteSpace(key))
@@ -78,6 +84,32 @@ namespace Grain.Cache.CouchbaseProvider
         {
             var _result = this.Get(key, group, expiresIn);
             return _result != null ? _result.ToString().FromJson<T>() : default(T);
+        }
+
+        public virtual IDictionary<string, object> Get(IEnumerable<string> keys, string group = "") 
+        {
+            if (!keys.Any())
+                return null;
+
+            return _client.Get(GetKeysByGroup(keys, group));
+        }
+
+        public virtual IDictionary<string, T> Get<T>(IEnumerable<string> keys, string group = "") where T : class
+        {
+            if (!keys.Any())
+                return null;
+
+            var _results = _client.Get(GetKeysByGroup(keys, group));
+
+            if (!_results.Any())
+                return null;
+
+            var _output = new Dictionary<string, T> { };
+
+            foreach (var o in _results)
+                _output.Add(o.Key, o.Value.ToString().FromJson<T>());
+
+            return _output;
         }
 
         public virtual bool Remove(string key)

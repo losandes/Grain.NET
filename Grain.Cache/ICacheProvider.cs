@@ -17,6 +17,14 @@ namespace Grain.Cache
         string GetKeyByGroup(string key, string group);
 
         /// <summary>
+        /// Get the group keys (concatted strings)
+        /// </summary>
+        /// <param name="keys">a collection of unique keys for the cached items</param>
+        /// <param name="group">the data group the cached item belongs to</param>
+        /// <returns>a collection of concatenated strings (group + key)</returns>
+        IEnumerable<string> GetKeysByGroup(IEnumerable<string> keys, string group);
+
+        /// <summary>
         /// Sets data in the cache, by the given key and with the given settings.  If the item already exists in the cache, 
         /// it is overwritten.  Otherwise it is added.
         /// </summary>
@@ -57,6 +65,23 @@ namespace Grain.Cache
         /// <param name="expiresIn">(optional) a new duration to persist this item in the cache (i.e. touch) </param>
         /// <returns>the cached item as T</returns>
         T Get<T>(string key, string group = "", TimeSpan? expiresIn = null) where T : class;
+
+        /// <summary>
+        /// Gets the values for multiple keys from the cache, by the given keys
+        /// </summary>
+        /// <param name="keys">a collection of unique keys for the cached items</param>
+        /// <param name="group">(optional) the data group the cached item belongs to</param>
+        /// <returns>the cached items in a Dictionary</returns>
+        IDictionary<string,object> Get(IEnumerable<string> keys, string group = "");
+        
+        /// <summary>
+        /// Gets the values for multiple keys from the cache, by the given keys
+        /// </summary>
+        /// <typeparam name="T">the type of the requested data (i.e. the type it will be deserialized or cast as)</typeparam>
+        /// <param name="keys">a collection of unique keys for the cached items</param>
+        /// <param name="group">(optional) the data group the cached item belongs to</param>
+        /// <returns>the cached items in a Dictionary</returns>
+        IDictionary<string, T> Get<T>(IEnumerable<string> keys, string group = "") where T : class;
 
         /// <summary>
         /// removes an item from the cache, by the given key
