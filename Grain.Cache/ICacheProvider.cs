@@ -67,21 +67,40 @@ namespace Grain.Cache
         T Get<T>(string key, string group = "", TimeSpan? expiresIn = null) where T : class;
 
         /// <summary>
-        /// Gets the values for multiple keys from the cache, by the given keys
+        /// Gets the non-null values for multiple keys from the cache, by the given keys
         /// </summary>
         /// <param name="keys">a collection of unique keys for the cached items</param>
         /// <param name="group">(optional) the data group the cached item belongs to</param>
         /// <returns>the cached items in a Dictionary</returns>
-        IDictionary<string,object> Get(IEnumerable<string> keys, string group = "");
-        
+        IEnumerable<object> Get(IEnumerable<string> keys, string group = "");
+
         /// <summary>
-        /// Gets the values for multiple keys from the cache, by the given keys
+        /// Gets the non-null values for multiple keys from the cache, by the given keys
         /// </summary>
         /// <typeparam name="T">the type of the requested data (i.e. the type it will be deserialized or cast as)</typeparam>
         /// <param name="keys">a collection of unique keys for the cached items</param>
         /// <param name="group">(optional) the data group the cached item belongs to</param>
         /// <returns>the cached items in a Dictionary</returns>
-        IDictionary<string, T> Get<T>(IEnumerable<string> keys, string group = "") where T : class;
+        IEnumerable<T> Get<T>(IEnumerable<string> keys, string group = "") where T : class;
+
+        /// <summary>
+        /// Gets the values for multiple keys from the cache, by the given keys. Documents that were not found 
+        /// are represented with null for the Value in the KeyValuePairs.
+        /// </summary>
+        /// <param name="keys">a collection of unique keys for the cached items</param>
+        /// <param name="group">(optional) the data group the cached item belongs to</param>
+        /// <returns>the cached items in a Dictionary</returns>
+        IDictionary<string,object> GetAll(IEnumerable<string> keys, string group = "");
+        
+        /// <summary>
+        /// Gets the values for multiple keys from the cache, by the given keys.  Documents that were not found 
+        /// are represented with null for the Value in the KeyValuePairs.
+        /// </summary>
+        /// <typeparam name="T">the type of the requested data (i.e. the type it will be deserialized or cast as)</typeparam>
+        /// <param name="keys">a collection of unique keys for the cached items</param>
+        /// <param name="group">(optional) the data group the cached item belongs to</param>
+        /// <returns>the cached items in a Dictionary</returns>
+        IDictionary<string, T> GetAll<T>(IEnumerable<string> keys, string group = "") where T : class;
 
         /// <summary>
         /// removes an item from the cache, by the given key

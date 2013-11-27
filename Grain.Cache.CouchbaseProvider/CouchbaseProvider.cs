@@ -75,7 +75,31 @@ namespace Grain.Cache.CouchbaseProvider
             return _result != null ? _result.ToString().FromJson<T>() : default(T);
         }
 
-        public virtual IDictionary<string, object> Get(IEnumerable<string> keys, string group = "") 
+        public virtual IEnumerable<object> Get(IEnumerable<string> keys, string group = "")
+        {
+            if (!keys.Any())
+                return null;
+
+            return _client.Get(GetKeysByGroup(keys, group)).Where(o => o.Value != null).Select(o => o.Value);
+        }
+
+        public virtual IEnumerable<T> Get<T>(IEnumerable<string> keys, string group = "") where T : class
+        {
+            if (!keys.Any())
+                yield break;
+
+            var _results = _client.Get(GetKeysByGroup(keys, group));
+
+            if (!_results.Any())
+                yield break;
+
+            var _output = new Dictionary<string, T> { };
+
+            foreach (var o in _results.Where(r => r.Value != null))
+                yield return o.Value.ToString().FromJson<T>();
+        }
+
+        public virtual IDictionary<string, object> GetAll(IEnumerable<string> keys, string group = "") 
         {
             if (!keys.Any())
                 return null;
@@ -83,7 +107,7 @@ namespace Grain.Cache.CouchbaseProvider
             return _client.Get(GetKeysByGroup(keys, group));
         }
 
-        public virtual IDictionary<string, T> Get<T>(IEnumerable<string> keys, string group = "") where T : class
+        public virtual IDictionary<string, T> GetAll<T>(IEnumerable<string> keys, string group = "") where T : class
         {
             if (!keys.Any())
                 return null;
