@@ -11,6 +11,6 @@ namespace Grain.Cache
         public string Name { get; set; }
         public string Description { get; set; }
         public string Group { get; set; }
-        public TimeSpan ExpiresIn { get; set; }
+        public TimeSpan? ExpiresIn { get; set; }
     }
 }

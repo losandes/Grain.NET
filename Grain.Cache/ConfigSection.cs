@@ -99,10 +99,10 @@ namespace Grain.Cache
         /// Gets or sets the expiration duration.
         /// </summary>
         /// <value>The expiration duration.</value>
-        [ConfigurationProperty("expiresIn", IsRequired = true)]
-        public TimeSpan ExpiresIn
+        [ConfigurationProperty("expiresIn")]
+        public TimeSpan? ExpiresIn
         {
-            get { return (TimeSpan)this["expiresIn"]; }
+            get { return this["expiresIn"] != null ? (TimeSpan?)this["expiresIn"] : null; }
             set { this["expiresIn"] = value; }
         }
 

@@ -44,7 +44,7 @@ namespace Grain.Cache.CouchbaseProvider
             if (settings == null)
                 return Set<T>(key, data);
 
-            return _client.StoreJson(StoreMode.Set, GetKeyByGroup(key, settings.Group), data, settings.ExpiresIn);
+            return Set<T>(key, data, group: settings.Group, expiresIn: settings.ExpiresIn);
         }
 
         public virtual bool Set<T>(string key, T data, string group = "", TimeSpan? expiresIn = null)

@@ -28,6 +28,6 @@ namespace Grain.Cache
         /// <summary>
         /// The duration that items with this profile are persisted in the cache (i.e. HH:MM:SS)
         /// </summary>
-        TimeSpan ExpiresIn { get; set; }
+        TimeSpan? ExpiresIn { get; set; }
     }
 }
