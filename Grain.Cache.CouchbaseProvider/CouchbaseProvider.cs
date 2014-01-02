@@ -44,7 +44,7 @@ namespace Grain.Cache.CouchbaseProvider
             if (settings == null)
                 return Set<T>(key, data);
 
-            return Set<T>(key, data, group: settings.Group, expiresIn: settings.ExpiresIn);
+            return this.Set<T>(key, data, group: settings.Group, expiresIn: settings.ExpiresIn);
         }
 
         public virtual bool Set<T>(string key, T data, string group = "", TimeSpan? expiresIn = null)
@@ -130,7 +130,7 @@ namespace Grain.Cache.CouchbaseProvider
             if (String.IsNullOrWhiteSpace(key))
                 return false;
 
-            return _client.Remove(key);
+            return this.Remove(key, "");
         }
 
         public virtual bool Remove(string key, string group)
@@ -151,7 +151,7 @@ namespace Grain.Cache.CouchbaseProvider
             if (String.IsNullOrWhiteSpace(key))
                 return false;
 
-            return _client.KeyExists(key);
+            return this.Exists(key, "");
         }
 
         public virtual bool Exists(string key, string group)
@@ -167,7 +167,7 @@ namespace Grain.Cache.CouchbaseProvider
             if (String.IsNullOrWhiteSpace(key))
                 return false;
 
-            _client.Touch(key, expiresIn);
+            this.Touch(key, "", expiresIn);
             return true;
         }
 
