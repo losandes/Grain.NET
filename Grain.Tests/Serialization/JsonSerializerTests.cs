@@ -28,6 +28,19 @@ namespace Grain.Tests.Serialization
 
         [TestMethod]
         [TestCategory("Grain.Serialization")]
+        public void ToJsonCamelCaseTest()
+        {
+            string _expected = "{\"name\":\"Foo\",\"description\":\"Foo Bar\",\"id\":1,\"timeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}";
+            string _actual = TestModelInstances.SimpleModel.ToJson(true);
+            Assert.AreEqual(_expected, _actual);
+
+            _expected = "{\"stringCollection\":[\"Foo\",\"Bar\"],\"dictionary\":{\"foo\":\"Bar\",\"hello\":\"World\"},\"children\":[{\"name\":\"Foo\",\"description\":\"Foo Bar\",\"id\":3,\"timeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}],\"name\":\"Hello\",\"description\":\"Hello Bar\",\"id\":2,\"timeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}";
+            _actual = TestModelInstances.ModelWithCollections.ToJson(true);
+            Assert.AreEqual(_expected, _actual);
+        }
+
+        [TestMethod]
+        [TestCategory("Grain.Serialization")]
         public void ToBsonTest()
         {
             string _expected = "49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-01-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-77-DB-77-67-3B-01-00-00-00";

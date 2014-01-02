@@ -6,6 +6,7 @@ using System.IO;
 using Grain.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
+using Newtonsoft.Json.Serialization;
 
 namespace Grain.Serialization
 {
@@ -17,9 +18,15 @@ namespace Grain.Serialization
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string ToJson<T>(this T obj)
+        public static string ToJson<T>(this T obj, bool outputCamelCase = false)
         {
-            return JsonConvert.SerializeObject(obj);
+            if (!outputCamelCase)
+                return JsonConvert.SerializeObject(obj);
+
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
         }
 
         /// <summary>
@@ -27,9 +34,15 @@ namespace Grain.Serialization
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string ToJson(this object obj)
+        public static string ToJson(this object obj, bool outputCamelCase = false)
         {
-            return JsonConvert.SerializeObject(obj);
+            if (!outputCamelCase)
+                return JsonConvert.SerializeObject(obj);
+
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
         }
 
         ///// <summary>
