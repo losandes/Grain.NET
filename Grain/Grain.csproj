@@ -67,6 +67,7 @@
     <Compile Include="Extensions\PluralizationExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Dynamic\ExpandoJsonObject.cs" />
+    <Compile Include="Extensions\WebExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\PluralizationRepository.cs" />
     <Compile Include="Serialization\BinarySerializer.cs" />
