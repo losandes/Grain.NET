@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Attributes\Cite.cs" />
     <Compile Include="Configuration\ConfigManager.cs" />
+    <Compile Include="DataAccess\Sql\IDbInstance.cs" />
     <Compile Include="DataAccess\Sql\DbInstance.cs" />
     <Compile Include="Extensions\ClassExtensions.cs" />
     <Compile Include="Extensions\ConcurrentDictionaryExtensions.cs" />

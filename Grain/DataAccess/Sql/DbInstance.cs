@@ -7,7 +7,7 @@ using Grain.Attributes;
 
 namespace Grain.DataAccess.Sql
 {
-    public class DbInstance : IDisposable
+    public class DbInstance : ISqlDbInstance, IDisposable
     {
         public DbInstance(string connectionString)
         {
