@@ -14,6 +14,14 @@ namespace Grain.Tests.DataAccess.Sql
     {
         #region Setup
 
+        [ClassInitialize]
+        public static void Setup(TestContext context) 
+        { 
+            _touchDb = ConfigManager.TryGetValueAsBool("Touch.Db", false);
+        }
+
+        static bool _touchDb = false;
+
         string _command1 = @"
 declare @mockTestData xml = '
 <TestModels>	
@@ -120,13 +128,20 @@ declare @mockFooData xml = '
         [TestCategory("Grain.DataAccess")]
         public void ExecuteAsSingleTest()
         {
-            using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+            if (_touchDb)
             {
-                var _result = db.ExecuteAsSingle<DbTestModel>(new SqlCommand(_command1), TestModelExtensions.TestModelFactory());
-                Assert.AreEqual(_result.Id, 1);
-                Assert.AreEqual(_result.Name, "Foo");
-                Assert.AreEqual(_result.Guid, new Guid("45576EAE-8206-46C6-97E1-80614349463B"));
-                Assert.AreEqual(_result.Date, new DateTime(2013, 05, 12));
+                using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+                {
+                    var _result = db.ExecuteAsSingle<DbTestModel>(new SqlCommand(_command1), TestModelExtensions.TestModelFactory());
+                    Assert.AreEqual(_result.Id, 1);
+                    Assert.AreEqual(_result.Name, "Foo");
+                    Assert.AreEqual(_result.Guid, new Guid("45576EAE-8206-46C6-97E1-80614349463B"));
+                    Assert.AreEqual(_result.Date, new DateTime(2013, 05, 12));
+                }
+            }
+            else 
+            {
+                Assert.Inconclusive("Database Tests are not configured to run");
             }
         }
 
@@ -137,10 +152,17 @@ declare @mockFooData xml = '
         [TestCategory("Grain.DataAccess")]
         public void ExecuteAsTest()
         {
-            using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+            if (_touchDb)
             {
-                var _result = db.ExecuteAs<DbTestModel>(new SqlCommand(_command1), TestModelExtensions.TestModelFactory());
-                ValidateCommand1(_result);
+                using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+                {
+                    var _result = db.ExecuteAs<DbTestModel>(new SqlCommand(_command1), TestModelExtensions.TestModelFactory());
+                    ValidateCommand1(_result);
+                }
+            }
+            else
+            {
+                Assert.Inconclusive("Database Tests are not configured to run");
             }
         }
 
@@ -151,10 +173,17 @@ declare @mockFooData xml = '
         [TestCategory("Grain.DataAccess")]
         public void ExecuteAsTestUsingOrdinals()
         {
-            using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+            if (_touchDb)
             {
-                var _result = db.ExecuteAs<DbTestModel>(new SqlCommand(_command1), TestModelExtensions.TestModelFactory_UsingOrdinals());
-                ValidateCommand1(_result);
+                using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+                {
+                    var _result = db.ExecuteAs<DbTestModel>(new SqlCommand(_command1), TestModelExtensions.TestModelFactory_UsingOrdinals());
+                    ValidateCommand1(_result);
+                }
+            }
+            else
+            {
+                Assert.Inconclusive("Database Tests are not configured to run");
             }
         }
 
@@ -165,35 +194,42 @@ declare @mockFooData xml = '
         [TestCategory("Grain.DataAccess")]
         public void ExecuteAsManyTest()
         {
-            using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+            if (_touchDb)
             {
-                List<DbTestModel> _models = new List<DbTestModel> { };
-                List<DbTestModelFoo> _foos = new List<DbTestModelFoo> { };
-                var _command = new SqlCommand(_command1 + _command2);
+                using (DbInstance db = new DbInstance(ConfigManager.GetConnectionString("UnitTests")))
+                {
+                    List<DbTestModel> _models = new List<DbTestModel> { };
+                    List<DbTestModelFoo> _foos = new List<DbTestModelFoo> { };
+                    var _command = new SqlCommand(_command1 + _command2);
 
-                // Test two result sets
-                db.ExecuteAs<DbTestModel, DbTestModelFoo>(_command,
-                    TestModelExtensions.TestModelFactory(), _models,
-                    TestModelExtensions.TestModelFooFactory(), _foos);
+                    // Test two result sets
+                    db.ExecuteAs<DbTestModel, DbTestModelFoo>(_command,
+                        TestModelExtensions.TestModelFactory(), _models,
+                        TestModelExtensions.TestModelFooFactory(), _foos);
 
-                ValidateCommand1(_models);
-                ValidateCommand2(_foos);
+                    ValidateCommand1(_models);
+                    ValidateCommand2(_foos);
 
-                // Test two result sets, using named parameters
-                db.ExecuteAs<DbTestModel, DbTestModelFoo>(_command,
-                    modelBinder1: TestModelExtensions.TestModelFactory(), output1: _models,
-                    modelBinder2: TestModelExtensions.TestModelFooFactory(), output2: _foos);
+                    // Test two result sets, using named parameters
+                    db.ExecuteAs<DbTestModel, DbTestModelFoo>(_command,
+                        modelBinder1: TestModelExtensions.TestModelFactory(), output1: _models,
+                        modelBinder2: TestModelExtensions.TestModelFooFactory(), output2: _foos);
 
-                ValidateCommand1(_models);
-                ValidateCommand2(_foos);
+                    ValidateCommand1(_models);
+                    ValidateCommand2(_foos);
 
-                // Test two result sets, using the six-result set overload
-                db.ExecuteAs<DbTestModel, DbTestModelFoo, object, object, object, object>(_command,
-                    modelBinder1: TestModelExtensions.TestModelFactory(), output1: _models,
-                    modelBinder2: TestModelExtensions.TestModelFooFactory(), output2: _foos);
-                
-                ValidateCommand1(_models);
-                ValidateCommand2(_foos);
+                    // Test two result sets, using the six-result set overload
+                    db.ExecuteAs<DbTestModel, DbTestModelFoo, object, object, object, object>(_command,
+                        modelBinder1: TestModelExtensions.TestModelFactory(), output1: _models,
+                        modelBinder2: TestModelExtensions.TestModelFooFactory(), output2: _foos);
+
+                    ValidateCommand1(_models);
+                    ValidateCommand2(_foos);
+                }
+            }
+            else
+            {
+                Assert.Inconclusive("Database Tests are not configured to run");
             }
         }
     }
