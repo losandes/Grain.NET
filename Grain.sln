@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B50D4F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Encryption", "..\Grain.Encryption\Grain.Encryption.csproj", "{39E07778-A98B-4925-8FAC-2E71981DD632}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Encryption.Tests", "..\Grain.Encryption\Grain.Encryption.Tests\Grain.Encryption.Tests.csproj", "{144431D1-71BC-472C-90F5-0E891B830058}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Labs", "Grain.Labs\Grain.Labs.csproj", "{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grain.Cache", "Grain.Cache\Grain.Cache.csproj", "{36DB415E-1AA7-4853-99C2-89FD43641655}"
@@ -40,14 +36,6 @@ Global
 		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{259DF062-A5EF-4120-9737-913BCE0F5D7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39E07778-A98B-4925-8FAC-2E71981DD632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39E07778-A98B-4925-8FAC-2E71981DD632}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39E07778-A98B-4925-8FAC-2E71981DD632}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39E07778-A98B-4925-8FAC-2E71981DD632}.Release|Any CPU.Build.0 = Release|Any CPU
-		{144431D1-71BC-472C-90F5-0E891B830058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{144431D1-71BC-472C-90F5-0E891B830058}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{144431D1-71BC-472C-90F5-0E891B830058}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{144431D1-71BC-472C-90F5-0E891B830058}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54D9FE90-58D6-4CF3-BCE8-750A772D79D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
