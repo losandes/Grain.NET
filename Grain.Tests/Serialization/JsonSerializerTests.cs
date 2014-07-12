@@ -17,11 +17,11 @@ namespace Grain.Tests.Serialization
         [TestCategory("Grain.Serialization")]
         public void ToJsonTest()
         {
-            string _expected = "{\"Name\":\"Foo\",\"Description\":\"Foo Bar\",\"Id\":1,\"TimeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}";
+            string _expected = "{\"Name\":\"Foo\",\"Description\":\"Foo Bar\",\"Id\":1,\"TimeCreated\":\"2012-12-04T14:50:06.4559307Z\"}";
             string _actual = TestModelInstances.SimpleModel.ToJson();
             Assert.AreEqual(_expected, _actual);
 
-            _expected = "{\"StringCollection\":[\"Foo\",\"Bar\"],\"Dictionary\":{\"Foo\":\"Bar\",\"Hello\":\"World\"},\"Children\":[{\"Name\":\"Foo\",\"Description\":\"Foo Bar\",\"Id\":3,\"TimeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}],\"Name\":\"Hello\",\"Description\":\"Hello Bar\",\"Id\":2,\"TimeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}";
+            _expected = "{\"StringCollection\":[\"Foo\",\"Bar\"],\"Dictionary\":{\"Foo\":\"Bar\",\"Hello\":\"World\"},\"Children\":[{\"Name\":\"Foo\",\"Description\":\"Foo Bar\",\"Id\":3,\"TimeCreated\":\"2012-12-04T14:50:06.4559307Z\"}],\"Name\":\"Hello\",\"Description\":\"Hello Bar\",\"Id\":2,\"TimeCreated\":\"2012-12-04T14:50:06.4559307Z\"}";
             _actual = TestModelInstances.ModelWithCollections.ToJson();
             Assert.AreEqual(_expected, _actual);
         }
@@ -30,11 +30,11 @@ namespace Grain.Tests.Serialization
         [TestCategory("Grain.Serialization")]
         public void ToJsonCamelCaseTest()
         {
-            string _expected = "{\"name\":\"Foo\",\"description\":\"Foo Bar\",\"id\":1,\"timeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}";
+            string _expected = "{\"name\":\"Foo\",\"description\":\"Foo Bar\",\"id\":1,\"timeCreated\":\"2012-12-04T14:50:06.4559307Z\"}";
             string _actual = TestModelInstances.SimpleModel.ToJson(true);
             Assert.AreEqual(_expected, _actual);
 
-            _expected = "{\"stringCollection\":[\"Foo\",\"Bar\"],\"dictionary\":{\"foo\":\"Bar\",\"hello\":\"World\"},\"children\":[{\"name\":\"Foo\",\"description\":\"Foo Bar\",\"id\":3,\"timeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}],\"name\":\"Hello\",\"description\":\"Hello Bar\",\"id\":2,\"timeCreated\":\"2012-12-04T14:50:06.4559307-05:00\"}";
+            _expected = "{\"stringCollection\":[\"Foo\",\"Bar\"],\"dictionary\":{\"foo\":\"Bar\",\"hello\":\"World\"},\"children\":[{\"name\":\"Foo\",\"description\":\"Foo Bar\",\"id\":3,\"timeCreated\":\"2012-12-04T14:50:06.4559307Z\"}],\"name\":\"Hello\",\"description\":\"Hello Bar\",\"id\":2,\"timeCreated\":\"2012-12-04T14:50:06.4559307Z\"}";
             _actual = TestModelInstances.ModelWithCollections.ToJson(true);
             Assert.AreEqual(_expected, _actual);
         }
@@ -43,17 +43,17 @@ namespace Grain.Tests.Serialization
         [TestCategory("Grain.Serialization")]
         public void ToBsonTest()
         {
-            string _expected = "49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-01-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-77-DB-77-67-3B-01-00-00-00";
+            string _expected = "49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-01-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-F7-32-65-66-3B-01-00-00-00";
             byte[] _actualBytes = TestModelInstances.SimpleModel.ToBson();
             string _actual = BitConverter.ToString(_actualBytes);
             Assert.AreEqual(_expected, _actual);
 
-            _expected = "04-01-00-00-04-53-74-72-69-6E-67-43-6F-6C-6C-65-63-74-69-6F-6E-00-1B-00-00-00-02-30-00-04-00-00-00-46-6F-6F-00-02-31-00-04-00-00-00-42-61-72-00-00-03-44-69-63-74-69-6F-6E-61-72-79-00-23-00-00-00-02-46-6F-6F-00-04-00-00-00-42-61-72-00-02-48-65-6C-6C-6F-00-06-00-00-00-57-6F-72-6C-64-00-00-04-43-68-69-6C-64-72-65-6E-00-51-00-00-00-03-30-00-49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-03-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-77-DB-77-67-3B-01-00-00-00-00-02-4E-61-6D-65-00-06-00-00-00-48-65-6C-6C-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-0A-00-00-00-48-65-6C-6C-6F-20-42-61-72-00-10-49-64-00-02-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-77-DB-77-67-3B-01-00-00-00";
+            _expected = "04-01-00-00-04-53-74-72-69-6E-67-43-6F-6C-6C-65-63-74-69-6F-6E-00-1B-00-00-00-02-30-00-04-00-00-00-46-6F-6F-00-02-31-00-04-00-00-00-42-61-72-00-00-03-44-69-63-74-69-6F-6E-61-72-79-00-23-00-00-00-02-46-6F-6F-00-04-00-00-00-42-61-72-00-02-48-65-6C-6C-6F-00-06-00-00-00-57-6F-72-6C-64-00-00-04-43-68-69-6C-64-72-65-6E-00-51-00-00-00-03-30-00-49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-03-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-F7-32-65-66-3B-01-00-00-00-00-02-4E-61-6D-65-00-06-00-00-00-48-65-6C-6C-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-0A-00-00-00-48-65-6C-6C-6F-20-42-61-72-00-10-49-64-00-02-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-F7-32-65-66-3B-01-00-00-00";
             _actualBytes = TestModelInstances.ModelWithCollections.ToBson();
             _actual = BitConverter.ToString(_actualBytes);
             Assert.AreEqual(_expected, _actual);
 
-            _expected = "0C-01-00-00-03-30-00-04-01-00-00-04-53-74-72-69-6E-67-43-6F-6C-6C-65-63-74-69-6F-6E-00-1B-00-00-00-02-30-00-04-00-00-00-46-6F-6F-00-02-31-00-04-00-00-00-42-61-72-00-00-03-44-69-63-74-69-6F-6E-61-72-79-00-23-00-00-00-02-46-6F-6F-00-04-00-00-00-42-61-72-00-02-48-65-6C-6C-6F-00-06-00-00-00-57-6F-72-6C-64-00-00-04-43-68-69-6C-64-72-65-6E-00-51-00-00-00-03-30-00-49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-03-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-77-DB-77-67-3B-01-00-00-00-00-02-4E-61-6D-65-00-06-00-00-00-48-65-6C-6C-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-0A-00-00-00-48-65-6C-6C-6F-20-42-61-72-00-10-49-64-00-02-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-77-DB-77-67-3B-01-00-00-00-00";
+            _expected = "0C-01-00-00-03-30-00-04-01-00-00-04-53-74-72-69-6E-67-43-6F-6C-6C-65-63-74-69-6F-6E-00-1B-00-00-00-02-30-00-04-00-00-00-46-6F-6F-00-02-31-00-04-00-00-00-42-61-72-00-00-03-44-69-63-74-69-6F-6E-61-72-79-00-23-00-00-00-02-46-6F-6F-00-04-00-00-00-42-61-72-00-02-48-65-6C-6C-6F-00-06-00-00-00-57-6F-72-6C-64-00-00-04-43-68-69-6C-64-72-65-6E-00-51-00-00-00-03-30-00-49-00-00-00-02-4E-61-6D-65-00-04-00-00-00-46-6F-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-08-00-00-00-46-6F-6F-20-42-61-72-00-10-49-64-00-03-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-F7-32-65-66-3B-01-00-00-00-00-02-4E-61-6D-65-00-06-00-00-00-48-65-6C-6C-6F-00-02-44-65-73-63-72-69-70-74-69-6F-6E-00-0A-00-00-00-48-65-6C-6C-6F-20-42-61-72-00-10-49-64-00-02-00-00-00-09-54-69-6D-65-43-72-65-61-74-65-64-00-F7-32-65-66-3B-01-00-00-00-00";
             _actualBytes = new List<TestModelWithCollections> { TestModelInstances.ModelWithCollections }.ToBson();
             _actual = BitConverter.ToString(_actualBytes);
             Assert.AreEqual(_expected, _actual);

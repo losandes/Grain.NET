@@ -7,7 +7,7 @@ namespace Grain.Tests.Models.TestModels
 {
     public static class TestModelInstances
     {
-        public static TestModel SimpleModel = new TestModel { Name = "Foo", Description = "Foo Bar", Id = 1, TimeCreated = DateTime.Parse("2012-12-04T14:50:06.4559307-05:00") };
+        public static TestModel SimpleModel = new TestModel { Name = "Foo", Description = "Foo Bar", Id = 1, TimeCreated = DateTime.Parse("2012-12-04T14:50:06.4559307Z").ToUniversalTime() };
         
         static TestModelWithCollections _collectionsModel;
         public static TestModelWithCollections ModelWithCollections 
@@ -19,11 +19,11 @@ namespace Grain.Tests.Models.TestModels
                     Name = "Hello",
                     Description = "Hello Bar",
                     Id = 2,
-                    TimeCreated = DateTime.Parse("2012-12-04T14:50:06.4559307-05:00"),
+                    TimeCreated = DateTime.Parse("2012-12-04T14:50:06.4559307Z").ToUniversalTime(),
                     StringCollection = new List<string> { "Foo", "Bar" },
                     Dictionary = new Dictionary<string, string> { },
                     Children = new List<TestModel> { 
-                    new TestModel { Name = "Foo", Description = "Foo Bar", Id = 3, TimeCreated = DateTime.Parse("2012-12-04T14:50:06.4559307-05:00") }
+                    new TestModel { Name = "Foo", Description = "Foo Bar", Id = 3, TimeCreated = DateTime.Parse("2012-12-04T14:50:06.4559307Z").ToUniversalTime() }
                 }
                 };
 
