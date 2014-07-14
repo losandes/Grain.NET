@@ -18,7 +18,7 @@ namespace Grain.Tests.Serialization
         public void ToJsonTest()
         {
             string _expected = "{\"Name\":\"Foo\",\"Description\":\"Foo Bar\",\"Id\":1,\"TimeCreated\":\"2012-12-04T14:50:06.4559307Z\"}";
-            string _actual = TestModelInstances.SimpleModel.ToJson();
+            string _actual = TestModelInstances.SimpleModel.BREAKToJson();
             Assert.AreEqual(_expected, _actual);
 
             _expected = "{\"StringCollection\":[\"Foo\",\"Bar\"],\"Dictionary\":{\"Foo\":\"Bar\",\"Hello\":\"World\"},\"Children\":[{\"Name\":\"Foo\",\"Description\":\"Foo Bar\",\"Id\":3,\"TimeCreated\":\"2012-12-04T14:50:06.4559307Z\"}],\"Name\":\"Hello\",\"Description\":\"Hello Bar\",\"Id\":2,\"TimeCreated\":\"2012-12-04T14:50:06.4559307Z\"}";
