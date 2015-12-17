@@ -1,3 +1,5 @@
+NO LONGER MAINTAINED
+
 Grain for .NET
 ==============
 
